@@ -1,9 +1,7 @@
 package com.csys.template.factory;
 
-import com.csys.template.domain.Blood;
 import com.csys.template.domain.Patient;
 import com.csys.template.dto.PatientDTO;
-import com.csys.template.service.BloodService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,11 +9,11 @@ import java.util.List;
 
 public class PatientFactory {
 
-    private  final BloodService bloodService;
-
-    public PatientFactory(BloodService bloodService) {
-        this.bloodService = bloodService;
-    }
+//    private  final BloodService bloodService;
+//
+//    public PatientFactory(BloodService bloodService) {
+//        this.bloodService = bloodService;
+//    }
 
 
     public static PatientDTO patientToPatientDTO(Patient patient){

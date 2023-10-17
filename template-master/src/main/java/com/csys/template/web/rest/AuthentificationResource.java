@@ -1,10 +1,10 @@
 package com.csys.template.web.rest;
 
+
 import com.csys.template.dto.AuthentificationDTO;
 import com.csys.template.service.AuthentificationService;
-import com.csys.template.util.Preconditions;
 import jakarta.validation.Valid;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -31,30 +31,31 @@ public class AuthentificationResource {
         return authentificationService.findAll();
     }
 
-    @GetMapping("/{address}/{code}")
-    public AuthentificationDTO findUser(@PathVariable String address, @PathVariable String code) {
-        AuthentificationDTO authentificationDTO = authentificationService.findByAdress(address, code);
-        Preconditions.checkBusinessLogique(authentificationDTO != null, ENTITY_NAME + " Counter does Not found!");
-        return authentificationDTO;
-    }
+//    @GetMapping("/{address}/{code}")
+//    public AuthentificationDTO findUser(@PathVariable String address, @PathVariable String code) {
+//        AuthentificationDTO authentificationDTO = authentificationService.findByAdress(address, code);
+//
+//        return authentificationDTO;
+//    }
 
     @PostMapping
-    public ResponseEntity<?> addUser(@RequestBody @Valid AuthentificationDTO authentificationDTO, BindingResult bindingResult)
+    public AuthentificationDTO add(@RequestBody @Valid AuthentificationDTO authentificationDTO, BindingResult bindingResult)
             throws MethodArgumentNotValidException, URISyntaxException {
-        if (authentificationDTO.getCode() == null) {
+        if (authentificationDTO.getId() == null) {
             bindingResult.addError(new FieldError(ENTITY_NAME, "code", "You can not add a counter with id"));
         }
-        return authentificationService.saveUser(authentificationDTO);
+         authentificationService.save(authentificationDTO);
+        return  authentificationDTO;
     }
 
-    @PutMapping("/{adress}")
-    public ResponseEntity<AuthentificationDTO> updateAuth(@RequestBody @Valid AuthentificationDTO authentificationDTO, @Valid @PathVariable String adress) throws URISyntaxException {
-        AuthentificationDTO auth = authentificationService.updateUser(authentificationDTO);
-        return ResponseEntity.created(new URI("/donation" + auth.getAdress())).body(auth);
-    }
-    @PutMapping("/update_password")
-    public ResponseEntity<AuthentificationDTO> updatePassword(@RequestBody @Valid AuthentificationDTO authentificationDTO) throws URISyntaxException {
-        AuthentificationDTO auth = authentificationService.updatePassword(authentificationDTO);
-        return ResponseEntity.created(new URI("/donation" + auth.getAdress())).body(auth);
-    }
+//    @PutMapping("/{adress}")
+//    public ResponseEntity<AuthentificationDTO> updateAuth(@RequestBody @Valid AuthentificationDTO authentificationDTO, @Valid @PathVariable String adress) throws URISyntaxException {
+//        AuthentificationDTO auth = authentificationService.updateUser(authentificationDTO);
+//        return ResponseEntity.created(new URI("/donation" + auth.getAdress())).body(auth);
+//    }
+//    @PutMapping("/update_password")
+//    public ResponseEntity<AuthentificationDTO> updatePassword(@RequestBody @Valid AuthentificationDTO authentificationDTO) throws URISyntaxException {
+//        AuthentificationDTO auth = authentificationService.updatePassword(authentificationDTO);
+//        return ResponseEntity.created(new URI("/donation" + auth.getAdress())).body(auth);
+//    }
 }

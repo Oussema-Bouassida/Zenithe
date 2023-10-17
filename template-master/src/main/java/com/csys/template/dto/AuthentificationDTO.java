@@ -1,22 +1,53 @@
 package com.csys.template.dto;
 
 
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+import java.time.LocalDate;
+
 public class AuthentificationDTO {
 
-    private String code;
-    private String address;
+
+    private  Integer id;
+
+    private String email;
+
+    private String password;
+
     private String name;
-    private String datecreate;
+
+    private LocalDate datecreate;
+
     private String role;
-    private Integer actif;
+
+    private Boolean actif;
 
 
-    public Integer getActif() {
-        return actif;
+    public Integer getId() {
+        return id;
     }
 
-    public void setActif(Integer actif) {
-        this.actif = actif;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
@@ -27,11 +58,11 @@ public class AuthentificationDTO {
         this.name = name;
     }
 
-    public String getDatecreate() {
+    public LocalDate getDatecreate() {
         return datecreate;
     }
 
-    public void setDatecreate(String datecreate) {
+    public void setDatecreate(LocalDate datecreate) {
         this.datecreate = datecreate;
     }
 
@@ -43,19 +74,11 @@ public class AuthentificationDTO {
         this.role = role;
     }
 
-    public String getCode() {
-        return code;
+    public Boolean getActif() {
+        return actif;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getAdress() {
-        return address;
-    }
-
-    public void setAdress(String adress) {
-        this.address = adress;
+    public void setActif(Boolean actif) {
+        this.actif = actif;
     }
 }

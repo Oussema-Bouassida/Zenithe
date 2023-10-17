@@ -1,9 +1,7 @@
 package com.csys.template.factory;
 
 import com.csys.template.domain.Authentification;
-import com.csys.template.domain.Counter;
 import com.csys.template.dto.AuthentificationDTO;
-import com.csys.template.dto.CounterDTO;
 
 
 import java.time.LocalDate;
@@ -47,11 +45,11 @@ public class AuthentificationFactory {
         AuthentificationDTO authentificationDTO = new AuthentificationDTO();
         LocalDate d = authentication.getDatecreate();
         String date = d.toString();
-        authentificationDTO.setAdress(authentication.getAdress());
-        String code = authentication.getCode();
+        authentificationDTO.setEmail(authentication.getEmail());
+        String code = authentication.getPassword();
         String ch = decrypter(code);
-        authentificationDTO.setCode(ch);
-        authentificationDTO.setDatecreate(date);
+        authentificationDTO.setPassword(ch);
+        authentificationDTO.setDatecreate(d);
         authentificationDTO.setActif(authentication.getActif());
         authentificationDTO.setName(authentication.getName());
         authentificationDTO.setRole(authentication.getRole());
@@ -63,12 +61,12 @@ public class AuthentificationFactory {
         Authentification authentification = new Authentification();
         LocalDate d = LocalDate.now();
 
-        authentification.setAdress(authentificationDTO.getAdress());
-        String code = authentificationDTO.getCode();
+        authentification.setEmail(authentificationDTO.getEmail());
+        String code = authentificationDTO.getPassword();
         String ch = crypter(code);
-        authentification.setCode(ch);
+        authentification.setPassword(ch);
         authentification.setDatecreate(d);
-        authentification.setActif(1);
+        authentification.setActif(Boolean.TRUE);
         authentification.setName(authentificationDTO.getName());
         authentification.setRole(authentificationDTO.getRole());
 

@@ -1,38 +1,57 @@
 package com.csys.template.domain;
 
 import jakarta.persistence.*;
-import org.hibernate.envers.AuditTable;
-import org.hibernate.envers.Audited;
+
+
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "Authentification")
-@Audited
-@AuditTable("Authentification_AUD")
+//@Audited
+//@AuditTable("Authentification_AUD")
 public class Authentification {
 
     @Id
-    @Column(name = "address", nullable = false)
-    private String address;
-    @Column(name = "code", nullable = false)
-    private String code;
-    @Column(name = "name", nullable = false)
+    @Column(name = "Id" , nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private  Integer id;
+    @Column(name = "Email", nullable = false)
+    private String email;
+    @Column(name = "Password", nullable = false)
+    private String password;
+    @Column(name = "Name", nullable = false)
     private String name;
     @Column(name = "date_create", nullable = false)
     private LocalDate datecreate;
     @Column(name = "role")
     private String role;
     @Column(name = "actif")
-    private Integer actif;
+    private Boolean actif;
 
-
-    public Integer getActif() {
-        return actif;
+    public Integer getId() {
+        return id;
     }
 
-    public void setActif(Integer actif) {
-        this.actif = actif;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
@@ -59,20 +78,11 @@ public class Authentification {
         this.role = role;
     }
 
-
-    public String getCode() {
-        return code;
+    public Boolean getActif() {
+        return actif;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getAdress() {
-        return address;
-    }
-
-    public void setAdress(String adress) {
-        this.address = adress;
+    public void setActif(Boolean actif) {
+        this.actif = actif;
     }
 }

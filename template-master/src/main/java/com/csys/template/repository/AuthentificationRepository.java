@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 
 
 public interface AuthentificationRepository extends JpaRepository<Authentification, String> {
-    Authentification findByAddressAndCode(String address, String code);
-    Authentification findByAddress(String address);
+//    Authentification findByAddressAndCode(String address, String code);
+//    Authentification findByAddress(String address);
 }
